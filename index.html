@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مروان & جنى ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff5478;--rose:#ff8da4;--bg:#09090d;--panel:#17151b;--text:#fff;--muted:#c9c1c8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:radial-gradient(ellipse at top,#26121c 0%,#0b0a0e 48%,#07070a 100%);color:var(--text);text-align:center;overflow-x:hidden}
+button,input{font:inherit}
+button{cursor:pointer}
+#surprise-screen{position:fixed;inset:0;min-height:100vh;z-index:1100;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;background:radial-gradient(ellipse at center,#35232a 0%,#171518 48%,#09090d 100%);text-align:center}
+.gift-icon{font-size:100px;filter:drop-shadow(0 0 28px #ff8da477);margin-bottom:24px;animation:float 2s ease-in-out infinite}
+#surprise-screen h2{font-size:clamp(24px,5vw,36px);color:#fff;margin:0 0 28px;text-shadow:0 0 20px #ff8da455}
+#surprise-screen .primary-btn{background:linear-gradient(135deg,#ffe4e7,#ffb6c2);color:#fff;min-width:190px}
+#lock-screen{position:fixed;inset:0;min-height:100vh;z-index:1000;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:24px;background:radial-gradient(ellipse at center,#28131d 0%,#0b0a0e 68%);text-align:center}
+.lock-heart{font-size:50px;animation:beat 1.4s infinite}
+#lock-screen h2{color:var(--rose);font-size:clamp(22px,5vw,30px);margin:10px 0}
+#lock-screen p{color:var(--muted);margin:0 0 18px}
+#passInput{width:min(300px,90vw);padding:13px 18px;border-radius:30px;border:1px solid var(--pink);background:#19151b;color:#fff;text-align:center;outline:none;margin-bottom:12px}
+.primary-btn,.music-control{border:0;border-radius:30px;background:linear-gradient(135deg,var(--pink),#c52c62);color:white;padding:11px 26px;font-weight:700;box-shadow:0 8px 24px #ff547833}
+#error-msg{color:#ff8198;margin-top:12px;display:none}
+#musicBtn{position:fixed;left:18px;bottom:18px;z-index:900;margin:0;direction:ltr;width:54px;height:54px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(35,29,38,.94);border:1px solid #ff8da477;backdrop-filter:blur(8px);box-shadow:0 6px 24px #0008}
+@media(max-width:430px){#musicBtn{left:12px;bottom:12px;width:50px;height:50px}}
+#main-content{display:none;padding:0 18px 34px;max-width:1000px;margin:auto}
+.hero{min-height:75vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:64px 0 38px;position:relative}
+.eyebrow{color:var(--rose);letter-spacing:2px;font-size:13px;margin-bottom:12px}
+.header-title{font-size:clamp(28px,6vw,48px);line-height:1.5;color:#ff7892;text-shadow:0 0 28px #ff547833}
+.sub-title{font-size:clamp(15px,3.6vw,19px);color:#e3d7de;margin:12px 0 20px;line-height:1.9}
+.scroll-hint{margin-top:35px;color:#c9aab6;font-size:14px;animation:float 2s ease-in-out infinite}
+.scroll-hint span{display:block;font-size:24px;color:var(--pink)}
+.music-control{display:inline-flex;align-items:center;gap:9px;margin:8px auto 0;transition:transform .2s}
+.music-control:hover{transform:translateY(-2px)}
+.section-title{font-size:clamp(22px,4.5vw,30px);color:var(--rose);margin:28px 0 18px}
+.counter-section{background:linear-gradient(145deg,#ff547811,#ffffff05);border:1px solid #ff547866;border-radius:24px;max-width:700px;margin:0 auto 42px;padding:24px 12px;box-shadow:0 14px 45px #0005}
+.counter-section h3{font-size:clamp(16px,3.7vw,20px);line-height:1.9;color:#ffd2dc;margin-bottom:18px}
+.timer-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-width:480px;margin:auto}
+.time-box{background:#100e13;border:1px solid #ff547855;border-radius:15px;padding:12px 4px}
+.number{font-size:clamp(20px,4.8vw,30px);font-weight:800;color:var(--pink);font-variant-numeric:tabular-nums}
+.label{font-size:12px;color:#c9c1c8;margin-top:3px}
+.photo-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px;margin:24px 0 48px}
+.photo-card{background:linear-gradient(145deg,#201a22,#111015);border:1px solid #ffffff14;border-radius:19px;padding:12px;box-shadow:0 10px 28px #0005;overflow:hidden}
+.photo-card img{display:block;width:100%;height:280px;object-fit:cover;border-radius:12px;background:#262027}
+.photo-card figcaption{margin-top:12px;font-size:16px;color:#ff9bb0;padding-bottom:3px}
+.message-section{background:linear-gradient(145deg,#ff547811,#ffffff04);border:1px solid #ff547866;border-radius:24px;max-width:760px;margin:30px auto 40px;padding:clamp(20px,5vw,34px);box-shadow:0 0 35px #ff547811}
+.message-section h2{color:var(--rose);font-size:clamp(19px,4vw,25px);line-height:1.8;margin-bottom:18px}
+.message-section p{font-size:clamp(15px,3.5vw,18px);line-height:2.15;color:#f0e9ed;text-align:right;white-space:normal}
+.signature{display:block;margin-top:24px;font-size:25px;font-weight:800;color:#ff8da4}
+footer{color:#817780;font-size:13px;padding:16px 0 4px}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@media(max-width:430px){#main-content{padding-left:13px;padding-right:13px}.photo-card img{height:250px}.timer-grid{gap:6px}.time-box{padding:10px 2px}}
+</style>
+</head>
+<body>
+<audio id="loveSong" loop preload="auto"><source src="song.mp3" type="audio/mpeg"></audio>
+
+<div id="surprise-screen">
+  <div class="gift-icon">🎁</div>
+  <h2>مستعد تفتح المفاجأة؟ 🤍</h2>
+  <button class="primary-btn" id="surpriseBtn" type="button">افتح المفاجأة ✨</button>
+</div>
+
+<div id="lock-screen" style="display:none">
+  <div class="lock-heart">💗</div>
+  <h2>أدخل السر لفتح المفاجأة 🔒</h2>
+  <p>فيه حاجة صغيرة مستنياك هنا ✨</p>
+  <input type="password" id="passInput" placeholder="كلمة المرور" autocomplete="off">
+  <button class="primary-btn" id="enterBtn" type="button">دخول ✨</button>
+  <p id="error-msg">كلمة المرور غير صحيحة! ❌</p>
+</div>
+
+<main id="main-content">
+  <section class="hero">
+    <div class="eyebrow">To Marwany 👫</div>
+    <h1 class="header-title">حبيب عمري ❤️</h1>
+    
+    <button class="music-control" id="musicBtn" type="button" aria-label="تشغيل أو إيقاف الأغنية" title="تشغيل أو إيقاف الأغنية"><span id="music-icon">▶</span><span id="music-text" style="display:none">تشغيل الأغنية 🎶</span></button>
+    <div class="scroll-hint">ممكن تنزل تحت شوية؟<span>⌄</span></div><h2 class="section-title" style="margin-top:30px">بحب كل تفصيلة بينا 💗</h2>
+  </section>
+
+  <section class="counter-section" aria-label="عداد الوقت">
+    <h3>بقالنا أكتر من تلت سنين ويارب العمر كله تكون معايا وجمبي 🫂🏡</h3>
+    <div class="timer-grid">
+      <div class="time-box"><div class="number" id="days">0</div><div class="label">يوم</div></div>
+      <div class="time-box"><div class="number" id="hours">0</div><div class="label">ساعة</div></div>
+      <div class="time-box"><div class="number" id="minutes">0</div><div class="label">دقيقة</div></div>
+      <div class="time-box"><div class="number" id="seconds">0</div><div class="label">ثانية</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">ذكرياتنا الحلوة ✨</h2>
+    <div class="photo-gallery">
+      <figure class="photo-card"><img src="photo1.jpg" alt="ذكرى 1"><figcaption>لحظة من العمر ✨</figcaption></figure>
+      <figure class="photo-card"><img src="photo2.jpg" alt="ذكرى 2"><figcaption>تفاصيل صغيرة 💖</figcaption></figure>
+      <figure class="photo-card"><img src="photo3.jpg" alt="ذكرى 3"><figcaption>أيام حلوة سوا 🌸</figcaption></figure>
+      <figure class="photo-card"><img src="photo4.jpg" alt="ذكرى 4"><figcaption>والأجمل لسه جاي 💫</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="message-section">
+    <h2>مش محتاجة مناسبة عشان أقولك انك اغلى حاجة و اني بحب كل حاجة بينا 🫂</h2>
+    <p>بما اني حاسة أن الفترة دي مش احسن حاجة وحاسة انك مضغوط شوية كنت عايزة اقولك اني بحبك اوي يحبيبي يارب دايما تكون معايا وجمبي انا بحبك اوي والله وبحب دايما وجودك في كل حاجة في حياتي مليش حد غيرك انت حبيبي وصاحبي واخويا وكل حاجة ليا في الدنيا كل تفصيلة بينا دايما في قلبي و في بالي يارب نفضل دايما سوا و مع بعض في كل خطوة و ربنا يكتبلنا كل الخير سوا و نصيبنا يكون مع بعض ربنا يخليك ليا يحبيبي و يارب اشوفك دايما مرتاح وكويس و ربنا يريح قلبك وبالك و يكرمك بكل حاجة حلوة زيك ، بحبك اوي اوي و فخورة بيك دايما و شايفاك احسن واشطر حد في الدنيا يارب اشوفك محقق كل حاجة حلوة في الدنيا و ربنا يكرمك بكل حاجة نفسك فيها و يارب تبقى دايما معايا وجمبي في كل خطوة في حياتي ، بحبك اوي ينور عيني 🌍👫</p>
+    <span class="signature">جنى ♡ مروان</span>
+  </section>
+  <footer>Made with Love For Marwan & Jana ❤️</footer>
+</main>
+
+<script>
+const surpriseScreen = document.getElementById('surprise-screen');
+const lockScreen = document.getElementById('lock-screen');
+const mainContent = document.getElementById('main-content');
+const passInput = document.getElementById('passInput');
+const errorMsg = document.getElementById('error-msg');
+const song = document.getElementById('loveSong');
+const musicText = document.getElementById('music-text');
+const musicIcon = document.getElementById('music-icon');
+let counterStarted = false;
+
+function checkPass(){
+  if(passInput.value === '2572023'){
+    lockScreen.style.display = 'none';
+    mainContent.style.display = 'block';
+    startCounter();
+    song.play().then(()=>setMusicState(true)).catch(()=>setMusicState(false));
+  }else{
+    errorMsg.style.display = 'block';
+    passInput.select();
+  }
+}
+function setMusicState(isPlaying){
+  musicText.textContent = isPlaying ? 'إيقاف الأغنية ⏸' : 'تشغيل الأغنية 🎶';
+  musicIcon.textContent = isPlaying ? 'Ⅱ' : '▶';
+}
+async function toggleMusic(){
+  if(song.paused){
+    try{await song.play();setMusicState(true);}
+    catch(e){setMusicState(false);alert('تعذّر تشغيل الأغنية. تأكدي إن ملف song.mp3 موجود بجانب index.html.');}
+  }else{song.pause();setMusicState(false);}
+}
+document.getElementById('surpriseBtn').addEventListener('click',()=>{
+  surpriseScreen.style.display='none';
+  lockScreen.style.display='flex';
+});
+document.getElementById('enterBtn').addEventListener('click',checkPass);
+passInput.addEventListener('keydown',e=>{if(e.key==='Enter')checkPass();});
+passInput.addEventListener('input',()=>{errorMsg.style.display='none';});
+document.getElementById('musicBtn').addEventListener('click',toggleMusic);
+song.addEventListener('play',()=>setMusicState(true));
+song.addEventListener('pause',()=>setMusicState(false));
+
+function startCounter(){
+  if(counterStarted)return;
+  counterStarted=true;
+  const startDate=new Date(2023,6,25,0,0,0);
+  function update(){
+    const diff=Math.max(0,Date.now()-startDate.getTime());
+    document.getElementById('days').textContent=Math.floor(diff/86400000);
+    document.getElementById('hours').textContent=Math.floor(diff/3600000)%24;
+    document.getElementById('minutes').textContent=Math.floor(diff/60000)%60;
+    document.getElementById('seconds').textContent=Math.floor(diff/1000)%60;
+  }
+  update();
+  setInterval(update,1000);
+}
+</script>
+</body>
+</html>
